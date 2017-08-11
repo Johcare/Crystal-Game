@@ -3,17 +3,6 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Document</title>
-		<!-- Jquery -->
-		<script
-		src="http://code.jquery.com/jquery-3.2.1.js"
-		integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
-		crossorigin="anonymous"></script>
-		<!-- Latest compiled and minified CSS -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-		<!-- Optional theme -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-		<!-- Latest compiled and minified JavaScript -->
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 	</head>
 	<body>
 		<div class="container-center">
@@ -26,7 +15,7 @@
 				<pre >Looses: <span class="looses"> </span></pre>
 				<pre>Current Guess:<span class="currentguess"></span></pre>
 			</div>
-			<!-- J -->
+		
 			<div class="row">
 				<div class="  col-md-3"><img data-points= "0" class =" thumbnail crystal" src="https://vignette3.wikia.nocookie.net/summoners-war-sky-arena/images/e/e5/Cash_Shop_Box_of_Crystals.png/revision/latest?cb=20150225153310" alt=""></div>
 				<div class="  col-md-3"><img data-points= "0" class =" thumbnail crystal" src="https://vignette3.wikia.nocookie.net/summoners-war-sky-arena/images/c/c5/Cash_Shop_Handful_of_Crystals.png/revision/latest?cb=20150225153118" alt=""></div>
@@ -35,104 +24,17 @@
 			</div>
 		</div>
 	</body>
-	<script>
-// Документ загрузился
-$( document ).ready(function() {
+	<!-- Jquery -->
+		<script
+		src="http://code.jquery.com/jquery-3.2.1.js"
+		integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+		crossorigin="anonymous"></script>
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<!-- Optional theme -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+		<script src="app.js"></script>
 
-    	// Get random number function
-    	// interval from  80 to 130
-	var min = 80;
-	var max = 130;
-    var userpick=0;
-    var wins = 0;
-    var looses = 0;
-    var currentguess=3;
-
-	function getRandomInt (min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
-// looses
-// wins
-// took a class, and insert a text ,wins  и losse and guesses
-$('.wins').text(wins)
-$('.looses').text(looses)
-$('.currentguess').text(currentguess)
-
-//compputer
-//  
-	var ScoreToGuess = getRandomInt(min,max);
-	console.log(ScoreToGuess)
-	var arrayOfScores = [];
-
-//  strting a for loop, running 4 times, and placing result 
-	for (var i = 0; i < 4; i++) {
-		
-		var randomNumberForcrystal  = getRandomInt(3,30)
-		 arrayOfScores.push(randomNumberForcrystal)
-	}
-
-	console.log(arrayOfScores)
-
-		$('.crystal').each(function(index,crystal){
-
-			$(crystal).attr('data-points',arrayOfScores[index])
-				// $(crystal).attr('data-points', randomNumberForcrystal[index]);
-			// crystal.data('points') = arrayOfScores[index];
-
-		})
-
-		// have 4 crystaals i0mg
-		// then set the total value that you need to collect
-		// and then set uo the vakue of the fcrystals 
-		// then set uo the game function on click
-		//use bootstarp for design
-		// looses and wins
-		//if user goes over the score the looses ++ 
-		//if user scores the right pamount of points then wins++
-
-	$('.crystal').on('click',function(event){
-    var userhoosen = parseInt($(this).data('points'));
-		event.preventDefault()
-		userpick += userhoosen;
-		
-			// 	console.log($(this).attr('src'))
-			// console.log($(this).data('points'))
-console.log(userpick);
-  if(userpick > ScoreToGuess){
-   	alert('Not this time buddy');
-   	    
-   looses ++;
-
-$('.looses').text(looses)
-  ScoreToGuess = getRandomInt(min,max);
-  userpick = 0;
-  console.log("New Number is " + ScoreToGuess)
-   }
-   else if (userpick === ScoreToGuess) {
-   	 wins ++;
-   	  $('.wins').text(wins)
-   	alert("You got it right ")
-   	ScoreToGuess = getRandomInt(min,max);
-   	userpick = 0;
-   	console.log("New Number is " + ScoreToGuess)
-
-   }
-    var currentguess;
- function myFunction() {
-    var currentguess = document.createElement("INPUT");
-    currentguess.setAttribute("type", "number");
-    currentguess.setAttribute("value", "12345");
-    document.body.appendChild(currentguess);
-    currentguess=ScoreToGuess;
-}
-	});
-
-});
-
-
-
-
-
-	</script>
 </html>
